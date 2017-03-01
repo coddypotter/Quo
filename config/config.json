@@ -1,35 +1,23 @@
 {
   "development": {
-    "username": "fqqahxwzljnclf",
-    "password": "2219df11cb28e246cd9c8710dbc68ed1b9869b5eec8bedea80c1efcbf705b89a",
-    "database": "d86t6vh5mhcfht",
-    "host": "ec2-107-22-244-62.compute-1.amazonaws.com",
-    "dialect": "postgres",
-    "dialectOptions": {
-      "ssl": true,
-      "native": true
-    }
+    "username": "postgres",
+    "password": "toor",
+    "database": "quo",
+    "host": "localhost",
+    "dialect": "postgres"
   },
   "test": {
-    "username": "fqqahxwzljnclf",
-    "password": "2219df11cb28e246cd9c8710dbc68ed1b9869b5eec8bedea80c1efcbf705b89a",
-    "database": "d86t6vh5mhcfht",
-    "host": "ec2-107-22-244-62.compute-1.amazonaws.com",
-    "dialect": "postgres",
-    "dialectOptions": {
-      "ssl": true,
-      "native": true
-    }
+    "username": "postgres",
+    "password": "toor",
+    "database": "quo",
+    "host": "localhost",
+    "dialect": "postgres"
   },
   "production": {
-    "username": "fqqahxwzljnclf",
-    "password": "2219df11cb28e246cd9c8710dbc68ed1b9869b5eec8bedea80c1efcbf705b89a",
-    "database": "d86t6vh5mhcfht",
-    "host": "ec2-107-22-244-62.compute-1.amazonaws.com",
-    "dialect": "postgres",
-    "dialectOptions": {
-      "ssl": true,
-      "native": true
-    }
+    "username": "postgres",
+    "password": "toor",
+    "database": "quo",
+    "host": "localhost",
+    "dialect": "postgres"
   }
 }
