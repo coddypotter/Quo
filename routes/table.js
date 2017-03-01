@@ -16,15 +16,28 @@ router.post('/create', function (req, res) {
 });
 //delete method to remove a patient
 router.delete('/:id', function (req, res) {
-    models.table.destroy({
+    models.table.find({
         where: {
             id: req.params.id
         }
-    }).then(function (patient) {
-        res.json({ "status": 200, "messge": "Table Deleted" });
-    }).catch(function (err) {
-        res.json({ "status": 500, "messge": err });
+    }).then(function (updatedRecords) {
+        if (updatedRecords == null) {
+            res.json({ "status": 404, "messge": "Invalid Table ID" });
+        } else {
+            models.table.destroy({
+                where: {
+                    id: req.params.id
+                }
+            }).then(function (patient) {
+                res.json({ "status": 200, "messge": "Table Deleted" });
+            }).catch(function (err) {
+                res.json({ "status": 500, "messge": err });
+            });
+        }
+    }).catch(function (error) {
+        res.json({ "status": 500, "message": "Invalid Table ID" });
     });
+
 });
 router.put('/:id', function (req, res) {
 
@@ -41,7 +54,7 @@ router.put('/:id', function (req, res) {
     });
 });
 router.get('/', function (req, res) {
-    models.table.findAll({limit: 100}).then(function (table) {
+    models.table.findAll({ limit: 100 }).then(function (table) {
         res.json({ "status": 200, "table": table });
     }).catch(function (error) {
         res.json({ "status": 500, "message": error });
@@ -54,7 +67,7 @@ router.get('/:id', function (req, res) {
         }
     }).then(function (table) {
         if (table == null) {
-            res.status(404).json({ "status": 404, "table": "No table found" });
+            res.status(404).json({ "status": 404, "table": "No tables found" });
         } else {
             res.status(200).json({ "status": 200, "table": table });
         }

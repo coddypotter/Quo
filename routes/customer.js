@@ -4,11 +4,25 @@ var pg = require('pg');
 var router = express.Router();
 var models = require("../models/index")
 router.post('/booktable', function (req, res) {
-    models.booking.create(req.body).then(function (insertedVal) {
-        res.json({ "status": 200, "message": "Table Booked", "booking": insertedVal.dataValues });
+    models.table.find({
+        where: {
+            id: req.body.table_id
+        }
+    }).then(function (updatedRecords) {
+        if (updatedRecords == null) {
+            res.json({ "status": 404, "message": "Table not found" });
+        } else {
+            models.booking.create(req.body).then(function (insertedVal) {
+                res.json({ "status": 200, "message": "Table Booked", "booking": insertedVal.dataValues });
+            }).catch(function (error) {
+                res.json({ "status": 500, "message": error });
+            });
+        }
     }).catch(function (error) {
-        res.json({ "status": 500, "message": error });
+        res.json({ "status": 404, "message": "No records found" });
     });
+
+
 });
 router.post('/experience', function (req, res) {
     models.booking.create(req.body).then(function (insertedVal) {
@@ -25,15 +39,28 @@ router.get('/booktable', function (req, res) {
     });
 });
 router.delete('/cancelbooking/:id', function (req, res) {
-    models.booking.destroy({
+    models.booking.find({
         where: {
             id: req.params.id
         }
-    }).then(function (patient) {
-        res.json({ "status": 200, "messge": "Booking Cancelled" });
-    }).catch(function (err) {
-        res.json({ "status": 500, "messge": err });
+    }).then(function (updatedRecords) {
+        if (updatedRecords == null) {
+            res.json({ "status": 404, "message": "Booking not found" });
+        } else {
+            models.booking.destroy({
+                where: {
+                    id: req.params.id
+                }
+            }).then(function (patient) {
+                res.json({ "status": 200, "messge": "Booking Cancelled" });
+            }).catch(function (err) {
+                res.json({ "status": 500, "messge": err });
+            });
+        }
+    }).catch(function (error) {
+        res.json({ "status": 404, "message": "No records found" });
     });
+
 });
 router.get('/search', function (req, res) {
     models.restuarant.findAll({

@@ -7,7 +7,8 @@ router.post('/create', function (req, res) {
     models.restuarant.create({
         "name": req.body.name,
         "address": req.body.address,
-        "city": req.body.city
+        "city": req.body.city,
+        "cuisines": req.body.cuisines
     }).then(function (insertedVal) {
         res.json({ "status": 200, "message": "Restuarant Created Successfully", "restuarant": insertedVal.dataValues });
     }).catch(function (error) {
@@ -37,7 +38,7 @@ router.put('/:id', function (req, res) {
             res.json({ "status": 200, "message": "Restuarant Details Updated", "restuarant": updatedRecord });
         });
     }).catch(function (error) {
-        res.json({ "status": 404, "message": "No records found" });
+        res.json({ "status": 404, "message": "No restuarant found" });
     });
 });
 router.get('/', function (req, res) {
