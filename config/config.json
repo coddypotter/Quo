@@ -1,0 +1,24 @@
+{
+  "development": {
+    "username": "postgres",
+    "password": "toor",
+    "database": "quo",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "postgres",
+    "password": "toor",
+    "database": "quo",
+    "host": "localhost",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "postgres",
+    "password": "toor",
+    "database": "quo",
+    "host": "localhost",
+    "dialect": "postgres"
+  }
+}
+
